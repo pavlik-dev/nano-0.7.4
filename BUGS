@@ -1,0 +1,6 @@
+- Search_init() is really ugly. (5)
+- Marked cutting sometimes leaves a newline in the file unintelligently,
+  such as when all of a line is selected but the mark doesn't proceed to
+  the new line. (8)
+- When text is selected and there is a tab in the current line, the cursor
+  doesn't line up with the rest of the line anymore (9)

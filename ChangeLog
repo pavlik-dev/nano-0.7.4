@@ -1,0 +1,94 @@
+0.7.4	Optimized (obfuscated?) edit_refresh. Malloc() calls checked for
+	available memory, align bug fixed (Big Gaute).
+
+--- As of version 0.7.4 TIP is renamed to nano.
+
+0.7.3	Fixed a double blank_statusbar() when jumping to first and last
+	lines.  Took out unnecessary updates in load_file. Bug fix in
+	do_left. Missing updates to totlines, fixed bug #7 (last line not
+	having a newline at the end doesnt get read, bugfix in do_replace
+	with replace all, more/better comments (Robert Siemborski)
+0.7.2	Our first patch accepted into the source! configure fixes 
+	and optimizations (Erik Anderson).  Added missing stdarg.h to winio.c. 
+	Bug fix in update_line for editing long lines. Fixed arguments
+	being put into the filename when none is specified. Preliminary
+	+line command argument function.
+0.7.1	configure tweak for better FreeBSD support. Removed refresh() from
+	edit_refresh to stop cursor "jumping" during screen updates.  This
+	will probably cause a bug or two. Replace is now Alt-R (@R) and 
+	Goto line is Alt-G (@G), but they have control key aliases of ^\ and 
+	^_ respectively.  Made Control-F,B,N,P work like they do in Pico.
+	Control-G will become the Help key, but for now is stubbed out.
+0.7.0	Fixed missing stdlib.h from cut.c. Fixed a few message bugs in
+	findnextstr. Bound Control-D to Delete. Refixed segfault on zero
+	length file. Added Esc-[-A,B,C,D cursor key sequences.
+0.6.9	Preliminary cursor position function. Split up tip.c more, made
+	new files cut.c and winio.c. Fixed a bug in cut_marked_segment
+	that was leaving out a character.
+0.6.8	By request, optchr in main() is now an int.  Removed unneeded
+	globals. Bound functions for next/prev page, and wrote functions
+	do_home and do_end.
+0.6.7	Bugfix in do_uncut_text for totlines. Broke up open_file and
+	created read_file.  Implemented Insert File. Fixes in tipgetstr
+	for erroneous keystrokes. Added leave_cursor arg to do_yesno().
+0.6.6	Fixes in do_search(), do_replace(), do_writeout, and do_exit() for 
+	aborted searches and more Pico-compatible messages. statusq() now
+	returns -2 on a blank entry instead of -1. Bug fix in actual_x().
+0.6.5	More BSD compatibility.  Fixed two bugs in do_uncut_text
+	regarding buffers with filebot in them.  Fixins in do_backspace
+	and do_enter. Removed unused variables. Removed strip_newline.
+0.6.4	Took out the awful newlines from each string buffers.  This will
+	certainly cause more bugs. Fixes in do_exit(). Better empty file
+	handling (I hope).
+0.6.3	Implemented ^E.  Removed now unneeded wrapline from filestruct.
+	do_enter() rewritten.
+0.6.2	Better default file permissions. Complete rewrite of do_wrap().
+	Better handling of editing with cursor near COLS - 1.
+0.6.1	Starting to implement wrapping toggle. Fix for unhandled control
+	codes being entered into the buffer. Bug fix in actual_x; more
+	> COLS - 1 functionality, especially on lines with TABs.  Fixed being 
+	locked into cutbuffer when cutting more than one marked screen of text.
+0.6.0	We have TABs!!!  To do this, placewewant is now set to the actual
+	width on the screen we want to be, not an index of current->data.
+	New functions xplustabs and actual_x convert the actual place
+	the cursor should be on the screen to and from the place in the
+	string.
+0.5.5	Changed do_right to test do_down before setting current_x to 0,
+	eliminiating the "looping" on the last line when holding the right
+	arrow.  Preliminary support for longer than COLS - 1 lines.
+	Wrote do_delete.
+0.5.4	Fixed a big in total_update that wasn't repainting the screen properly.
+	tipgetstr is much more messy but text is now more editable ;)
+	Fixed crash on entering a new file, hopefully. Awful stub for tab
+	handling, only in do_right() to save me some sanity.
+0.5.3	Added check for malloc.h.  Implementing uncut from marker slowly.
+	Fixed a few bugs in do_uncut when not uncutting from marked text.
+        I would not trust your data with the mark code right now, but then
+        we're not at version 1.0 yet so dont trust anything ;)
+0.5.2	Added reset_cursor() before end of update_line so cursor doesnt
+	jump after each keystroke entered. Select text stubbed. Fixed
+	a bug in total_refresh().  Setting a mark will hilight properly,
+	but does not actually affect what gets put in the cutbuffer (yet).
+0.5.1	Writing a file out causes modified to be set back to 0.  Good.
+	Set_modified function written.  Cut and uncut text now set
+	modified when called.
+0.5.0	Half way there!  Implemented write out, save function seems
+	stable.  Changed statusbar blank routing to not refresh, a separte
+	program calls it and then refreshes.  Made the program not clear
+	the srceen on exit, just the bottom two lines (like Pico).
+0.4.2	Implemented replace all in replace function.  Crude exit function
+	(asks yes or no if modified but does not write to file).
+0.4.1	Implementing search & replace.  Fixed crash on deleting at top of
+	edit buffer.  Implemented "timeout" of statusbar messages.
+	Implemented ^A and ^E (beginning and end of line).
+0.4.0	Split code into global.c and proto.h to allow for better multiple
+	file handling.  Added #defines for the majority of the shortcut
+	kets in tip.h for easy modification. 
+0.3.1	Write edit_refresh which doesn't move the screen around, just
+	updates what's there already.  do_wrap() and do_enter() added.
+0.3.0	Preliminary cutbuffer (cut and uncut) support.
+0.2.7   Check for Modification added.  do_search() works.
+0.2.5	Rewrite of file data struct.
+0.2	Read in data to buffer, bound keystrokes to stub functions, 
+	initial cursor movement on screen.  Initial autoconf support.
+0.1	Initial program setup w/ncurses

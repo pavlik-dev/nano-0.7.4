@@ -1,0 +1,6 @@
+- Implement Spelling
+- Fix FIXMEs
+- Make code not suck so badly (ongoing)
+- Wrap lines in the file unless -w is specified
+- Internationalization
+- Color syntax highlighting? (certainly seems like there's a demand for it.)
